@@ -1,1 +1,4 @@
 colorama
+pyarmor
+requests
+pycryptodome requests
