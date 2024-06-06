@@ -8,6 +8,7 @@ Wifiphisher.py is a Python tool designed to retrieve and display information of 
 2. Clone or download the `wifi-phisher` repository.
 3. Run the `requirements.sye` file to install the necessary dependencies by executing the following command:
     ```
+    
     pip install -r requirements.sye
     ```
 4. Run the `Silent-Install.bat` file to install dependencies silently.
