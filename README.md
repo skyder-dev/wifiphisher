@@ -7,13 +7,10 @@ Wifiphisher.py is a Python tool designed to retrieve and display information of 
 
 ## Installation
 1. Create new folder named `wifiphisher`
-![Create new folder] (image.png)
 3. start `cmd.exe` on folder `wifiphisher` and run this command:
-![start cmd.exe] (image1.png)
    ```
    git clone https://github.com/skyder-dev/wifiphisher.git
    ```
-![git clone] (image2.png)
 4. **Prerequisites:** Make sure you have Python installed on your system.
 5. Run the `requirements.sye` file to install the necessary dependencies by executing the following command:
 
@@ -22,7 +19,6 @@ Wifiphisher.py is a Python tool designed to retrieve and display information of 
     ```
     
 6. Run the `Silent-Install.bat` file to install dependencies silently.
-7. ![Run the Silent-Install.bat] (image3.png)
 
 
 ## Usage
