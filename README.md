@@ -7,7 +7,7 @@ Wifiphisher.py is a Python tool designed to retrieve and display information of 
 
 ## Installation
 1. Create new folder named `wifiphisher`
-      ![git clone] (image2.png)
+![git clone] (image2.png)
 3. start `cmd.exe` on folder `wifiphisher` and run this command:
    ```
    git clone https://github.com/skyder-dev/wifiphisher.git
