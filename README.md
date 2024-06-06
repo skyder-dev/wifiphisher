@@ -13,14 +13,13 @@ Wifiphisher.py is a Python tool designed to retrieve and display information of 
    git clone https://github.com/skyder-dev/wifiphisher.git
    ```
 3. **Prerequisites:** Make sure you have Python installed on your system.
-4. Clone or download the `wifi-phisher` repository.
-6. Run the `requirements.sye` file to install the necessary dependencies by executing the following command:
+4. Run the `requirements.sye` file to install the necessary dependencies by executing the following command:
 
     ```
     pip install -r requirements.sye
     ```
     
-7. Run the `Silent-Install.bat` file to install dependencies silently.
+5. Run the `Silent-Install.bat` file to install dependencies silently.
 
 
 
